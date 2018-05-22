@@ -83,15 +83,16 @@ global THERING;
 
 AD = getad;
 AD.Machine             = 'SIRIUS';         % Will already be defined if setpathmml was used
-AD.SubMachine          = 'TB.V02.01';      % Will already be defined if setpathmml was used
+AD.SubMachine          = 'TB';             % Will already be defined if setpathmml was used
 AD.MachineType         = 'TransportLine';  % Will already be defined if setpathmml was used
+AD.Version             = getappdata(0, 'SIRIUSMachineVersion');
 AD.OperationalMode     = 'M1';
 AD.Energy              = 0.150;
 AD.InjectionEnergy     = 0.150;
 AD.ModeName            = 'M1';
 AD.OpsFileExtension    = '';
 
-THERING = sirius_tb_lattice(AD.Energy, AD.ModeName);
+THERING = sirius_tb_lattice(AD.Energy, AD.ModeName, AD.Version);
 
 AD.DeltaRFDisp         = 2000e-6;
 AD.ATModel             = 'sirius_tb_lattice';
@@ -111,15 +112,16 @@ global THERING;
 
 AD = getad;
 AD.Machine             = 'SIRIUS';         % Will already be defined if setpathmml was used
-AD.SubMachine          = 'TB.V02.01';      % Will already be defined if setpathmml was used
+AD.SubMachine          = 'TB';             % Will already be defined if setpathmml was used
 AD.MachineType         = 'TransportLine';  % Will already be defined if setpathmml was used
+AD.Version             = getappdata(0, 'SIRIUSMachineVersion');
 AD.OperationalMode     = 'M2';
 AD.Energy              = 0.150;
 AD.InjectionEnergy     = 0.150;
 AD.ModeName            = 'M2';
 AD.OpsFileExtension    = '';
 
-THERING = sirius_tb_lattice(AD.Energy, AD.ModeName);
+THERING = sirius_tb_lattice(AD.Energy, AD.ModeName, AD.Version);
 
 AD.DeltaRFDisp         = 2000e-6;
 AD.ATModel             = 'sirius_tb_lattice';
@@ -139,15 +141,16 @@ global THERING;
 
 AD = getad;
 AD.Machine             = 'SIRIUS';         % Will already be defined if setpathmml was used
-AD.SubMachine          = 'TB.V02.01';         % Will already be defined if setpathmml was used
+AD.SubMachine          = 'TB';             % Will already be defined if setpathmml was used
 AD.MachineType         = 'TransportLine';  % Will already be defined if setpathmml was used
+AD.Version             = getappdata(0, 'SIRIUSMachineVersion');
 AD.OperationalMode     = 'M3';
 AD.Energy              = 0.150;
 AD.InjectionEnergy     = 0.150;
 AD.ModeName            = 'M3';
 AD.OpsFileExtension    = '';
 
-THERING = sirius_tb_lattice(AD.Energy, AD.ModeName);
+THERING = sirius_tb_lattice(AD.Energy, AD.ModeName, AD.Version);
 
 AD.DeltaRFDisp         = 2000e-6;
 AD.ATModel             = 'sirius_tb_lattice';
@@ -167,15 +170,16 @@ global THERING;
 
 AD = getad;
 AD.Machine             = 'SIRIUS';         % Will already be defined if setpathmml was used
-AD.SubMachine          = 'TB.V02.01';         % Will already be defined if setpathmml was used
+AD.SubMachine          = 'TB';             % Will already be defined if setpathmml was used
 AD.MachineType         = 'TransportLine';  % Will already be defined if setpathmml was used
+AD.Version             = getappdata(0, 'SIRIUSMachineVersion');
 AD.OperationalMode     = 'M4';
 AD.Energy              = 0.150;
 AD.InjectionEnergy     = 0.150;
 AD.ModeName            = 'M4';
 AD.OpsFileExtension    = '';
 
-THERING = sirius_tb_lattice(AD.Energy, AD.ModeName);
+THERING = sirius_tb_lattice(AD.Energy, AD.ModeName, AD.Version);
 
 AD.DeltaRFDisp         = 2000e-6;
 AD.ATModel             = 'sirius_tb_lattice';
@@ -195,15 +199,16 @@ global THERING;
 
 AD = getad;
 AD.Machine             = 'SIRIUS';         % Will already be defined if setpathmml was used
-AD.SubMachine          = 'TB.V02.01';         % Will already be defined if setpathmml was used
+AD.SubMachine          = 'TB';             % Will already be defined if setpathmml was used
 AD.MachineType         = 'TransportLine';  % Will already be defined if setpathmml was used
+AD.Version             = getappdata(0, 'SIRIUSMachineVersion');
 AD.OperationalMode     = 'M5';
 AD.Energy              = 0.150;
 AD.InjectionEnergy     = 0.150;
 AD.ModeName            = 'M5';
 AD.OpsFileExtension    = '';
 
-THERING = sirius_tb_lattice(AD.Energy, AD.ModeName);
+THERING = sirius_tb_lattice(AD.Energy, AD.ModeName, AD.Version);
 
 AD.DeltaRFDisp         = 2000e-6;
 AD.ATModel             = 'sirius_tb_lattice';
@@ -223,15 +228,16 @@ global THERING;
 
 AD = getad;
 AD.Machine             = 'SIRIUS';         % Will already be defined if setpathmml was used
-AD.SubMachine          = 'TB.V02.01';         % Will already be defined if setpathmml was used
+AD.SubMachine          = 'TB';             % Will already be defined if setpathmml was used
 AD.MachineType         = 'TransportLine';  % Will already be defined if setpathmml was used
+AD.Version             = getappdata(0, 'SIRIUSMachineVersion');
 AD.OperationalMode     = 'M6';
 AD.Energy              = 0.150;
 AD.InjectionEnergy     = 0.150;
 AD.ModeName            = 'M6';
 AD.OpsFileExtension    = '';
 
-THERING = sirius_tb_lattice(AD.Energy, AD.ModeName);
+THERING = sirius_tb_lattice(AD.Energy, AD.ModeName, AD.Version);
 
 AD.DeltaRFDisp         = 2000e-6;
 AD.ATModel             = 'sirius_tb_lattice';

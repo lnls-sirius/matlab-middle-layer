@@ -17,28 +17,48 @@ function [the_ring, lattice_title] = sirius_bo_lattice(varargin)
 
 global THERING
 
-energy = 0.15e9; % eV
 
-lattice_version = 'BO.V04.01';
+%% global parameters
+%  =================
+
+% --- system parameters ---
+energy = 0.15e9; % eV
+mode = 'M';
+version = '0';
+harmonic_number = 828;
+
+% lattice version
+lattice_version = '';
+for i=1:length(varargin)
+    if strmatch('BO', varargin{i})
+        lattice_version = varargin{i};
+        varargin(i) = [];
+    end
+end
+
 for i=1:length(varargin)
 	energy = varargin{i} * 1e9;
 end
-mode = 'M';
-version = '0';
 
-harmonic_number = 828;
 rf_voltage = sirius_bo_rf_voltage(energy);
 %if energy == 0.15e9, rf_voltage = 150e3; else rf_voltage = 950e3; end
 
 lattice_title = [lattice_version '.' mode version];
 fprintf(['   Loading lattice ' lattice_title ' - ' num2str(energy/1e9) ' GeV' '\n']);
 
+% loads magnet strengths
+set_magnets_strength_booster;
+
+
+%% passmethods
+%  ===========
 bend_pass_method = 'BndMPoleSymplectic4Pass';
 quad_pass_method = 'StrMPoleSymplectic4Pass';
 sext_pass_method = 'StrMPoleSymplectic4Pass';
 
-% loads magnet strengths
-set_magnets_strength_booster;
+
+%% elements
+%  ========
 
 % a segmented model for the dipole has been created from the
 % approved fieldmap. The segmented model has a longer length

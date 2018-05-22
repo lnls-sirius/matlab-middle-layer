@@ -102,15 +102,17 @@ function set_operationalmode_mode1
 global THERING;
 
 AD = getad;
-AD.Machine             = 'SIRIUS';  % Will already be defined if setpathmml was used
-AD.SubMachine          = 'TS.V03.04';  % Will already be defined if setpathmml was used
+AD.Machine             = 'SIRIUS';         % Will already be defined if setpathmml was used
+AD.SubMachine          = 'TS';             % Will already be defined if setpathmml was used
+AD.MachineType         = 'TransportLine';  % Will already be defined if setpathmml was used
+AD.Version             = getappdata(0, 'SIRIUSMachineVersion');
 AD.OperationalMode     = 'M1';
 AD.Energy              = 3.0;
 AD.InjectionEnergy     = 3.0;
 AD.ModeName            = 'M1';
 AD.OpsFileExtension    = '';
 
-THERING = sirius_ts_lattice(AD.Energy, AD.ModeName);
+THERING = sirius_ts_lattice(AD.Energy, AD.ModeName, AD.Version);
                                 
 AD.DeltaRFDisp         = 2000e-6;
 AD.ATModel             = 'sirius_ts_lattice';
@@ -130,15 +132,17 @@ function set_operationalmode_mode2
 global THERING;
 
 AD = getad;
-AD.Machine             = 'SIRIUS';  % Will already be defined if setpathmml was used
-AD.SubMachine          = 'TS.V03.04';  % Will already be defined if setpathmml was used
+AD.Machine             = 'SIRIUS';         % Will already be defined if setpathmml was used
+AD.SubMachine          = 'TS';             % Will already be defined if setpathmml was used
+AD.MachineType         = 'TransportLine';  % Will already be defined if setpathmml was used
+AD.Version             = getappdata(0, 'SIRIUSMachineVersion');
 AD.OperationalMode     = 'M2';
 AD.Energy              = 3.0;
 AD.InjectionEnergy     = 3.0;
 AD.ModeName            = 'M2';
 AD.OpsFileExtension    = '';
 
-THERING = sirius_ts_lattice(AD.Energy, AD.ModeName);
+THERING = sirius_ts_lattice(AD.Energy, AD.ModeName, AD.Version);
                                 
 AD.DeltaRFDisp         = 2000e-6;
 AD.ATModel             = 'sirius_ts_lattice';

@@ -11,10 +11,18 @@ function [r, lattice_title, IniCond] = sirius_tb_lattice(varargin)
 
 % --- system parameters ---
 energy = 0.15e9;
-lattice_version = 'TB.V02.01';
 mode = 'M';
 version = '1';
 mode_version = [mode version];
+
+% lattice version
+lattice_version = '';
+for i=1:length(varargin)
+    if strmatch('TB', varargin{i})
+        lattice_version = varargin{i};
+        varargin(i) = [];
+    end
+end
 
 % processamento de input (energia e modo de operacao)
 for i=1:length(varargin)

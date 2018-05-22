@@ -14,8 +14,8 @@ checkforao;
 
 % MODES
 ModeCell = { ...
-    '3 GeV - S05.01 (default)', ...
-    '3 GeV - S10', ...
+    '3 GeV - S05.01 (symmetry 05 - default)', ...
+    '3 GeV - S10.01 (symmetry 10)', ...
     };
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -39,7 +39,7 @@ end
 
 % Set the AD directory path
 AD = getad;
-setmmldirectories(fullfile('SIRIUS',AD.Machine), AD.SubMachine, AD.ModeName, AD.OpsFileExtension);
+setmmldirectories(AD.Machine, AD.SubMachine, AD.ModeName, AD.OpsFileExtension);
 % Updates the AT indices in the MiddleLayer with the present AT lattice
 updateatindex;
 
@@ -102,37 +102,33 @@ function set_operationalmode_s10
 global THERING;
 
 AD = getad;
-AD.Machine             = 'SI.V22.04';   % Will already be defined if setpathmml was used
+AD.Machine             = 'SIRIUS';       % Will already be defined if setpathmml was used
 AD.SubMachine          = 'StorageRing';  % Will already be defined if setpathmml was used
 AD.MachineType         = 'StorageRing';  % Will already be defined if setpathmml was used
-AD.OperationalMode     = 'V22.04_S10.01';
+AD.Version             = getappdata(0, 'SIRIUSMachineVersion');
+AD.OperationalMode     = 'S10.01';
 AD.Energy              = 3.0;
 AD.InjectionEnergy     = 3.0;
 AD.ModeName            = 'S10';
 AD.ModeVersion         = '01';
 AD.OpsFileExtension    = '';
-
-sirius_si_lattice(AD.Energy, AD.ModeName, AD.ModeVersion);
-
-AD.Circumference       = findspos(THERING,length(THERING)+1);
 AD.HarmonicNumber      = 864;
 AD.DeltaRFDisp         = 0.001; % This has to be in Hardware Units 
 AD.DeltaRFChro         = linspace(-500,500,11)*1e-6; % This has to be in Hardware Units 
-
 AD.ATModel             = 'sirius_si_lattice';
 AD.Chromaticity.Golden = [1; 1];
-AD.MCF                 = getmcf('Model');
-
 AD.BeamCurrent         = 0.500; % [A]
 AD.NrBunches           = AD.HarmonicNumber;
 AD.Coupling            = 0.010;
 AD.OpsData.PrsProfFile = 'sirius_si_pressure_profile.txt';
 AD.AveragePressure     = 1.333e-9; % [mbar]
+AD.SetMultipolesErrors = false;  % 2015-09-18 Luana
 
-% 2015-09-18 Luana
-AD.SetMultipolesErrors = false;
-
+sirius_si_lattice(AD.Energy, AD.ModeName, AD.ModeVersion, AD.Version);
+AD.Circumference       = findspos(THERING,length(THERING)+1);
+AD.MCF                 = getmcf('Model');
 setad(AD);
+
 switch2sim;
 switch2hw;
 
@@ -142,36 +138,32 @@ function set_operationalmode_s05_01
 global THERING;
 
 AD = getad;
-AD.Machine             = 'SI.V22.04';   % Will already be defined if setpathmml was used
+AD.Machine             = 'SIRIUS';   % Will already be defined if setpathmml was used
 AD.SubMachine          = 'StorageRing';  % Will already be defined if setpathmml was used
 AD.MachineType         = 'StorageRing';  % Will already be defined if setpathmml was used
-AD.OperationalMode     = 'V22.04_S05.01';
+AD.Version             = getappdata(0, 'SIRIUSMachineVersion');
+AD.OperationalMode     = 'S05.01';
 AD.Energy              = 3.0;
 AD.InjectionEnergy     = 3.0;
 AD.ModeName            = 'S05';
 AD.ModeVersion         = '01';
 AD.OpsFileExtension    = '';
-
-sirius_si_lattice(AD.Energy, AD.ModeName, AD.ModeVersion);
-
-AD.Circumference       = findspos(THERING,length(THERING)+1);
 AD.HarmonicNumber      = 864;
 AD.DeltaRFDisp         = 0.001; % This has to be in Hardware Units 
 AD.DeltaRFChro         = linspace(-500,500,11)*1e-6; % This has to be in Hardware Units 
-
 AD.ATModel             = 'sirius_si_lattice';
 AD.Chromaticity.Golden = [1; 1];
-AD.MCF                 = getmcf('Model');
-
-AD.BeamCurrent         = 0.500; % [sA]
+AD.BeamCurrent         = 0.500; % [A]
 AD.NrBunches           = AD.HarmonicNumber;
 AD.Coupling            = 0.010;
 AD.OpsData.PrsProfFile = 'sirius_si_pressure_profile.txt';
 AD.AveragePressure     = 1.333e-9; % [mbar]
+AD.SetMultipolesErrors = false;  % 2015-09-18 Luana
 
-% 2015-09-18 Luana
-AD.SetMultipolesErrors = false;
-
+sirius_si_lattice(AD.Energy, AD.ModeName, AD.ModeVersion, AD.Version);
+AD.Circumference       = findspos(THERING,length(THERING)+1);
+AD.MCF                 = getmcf('Model');
 setad(AD);
+
 switch2sim;
 switch2hw;

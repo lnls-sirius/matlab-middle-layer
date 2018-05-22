@@ -9,10 +9,18 @@ d2r = pi/180;
 
 % --- system parameters ---
 energy = 3e9;
-lattice_version = 'TS.V03.04';
 mode = 'M';
 version = '1';
 mode_version = [mode version];
+
+% lattice version
+lattice_version = '';
+for i=1:length(varargin)
+    if strmatch('TS', varargin{i})
+        lattice_version = varargin{i};
+        varargin(i) = [];
+    end
+end
 
 % processamento de input (energia e modo de operacao)
 for i=1:length(varargin)

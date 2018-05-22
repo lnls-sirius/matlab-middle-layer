@@ -34,7 +34,15 @@ version = '01';
 strengths = @set_magnet_strengths;
 harmonic_number = 864;
 
-lattice_version = 'SI.V22.04';
+% lattice version
+lattice_version = '';
+for i=1:length(varargin)
+    if strmatch('SI', varargin{i})
+        lattice_version = varargin{i};
+        varargin(i) = [];
+    end
+end
+
 % processamento de input (energia e modo de operacao)
 for i=1:length(varargin)
     if ischar(varargin{i})

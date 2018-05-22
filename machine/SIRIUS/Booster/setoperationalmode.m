@@ -120,40 +120,35 @@ function set_operationalmode_High
 global THERING;
 
 AD = getad;
-AD.Machine             = 'SIRIUS';     % Will already be defined if setpathmml was used
-AD.SubMachine          = 'BO.V04.01';  % Will already be defined if setpathmml was used
-AD.MachineType         = 'Booster';    % Will already be defined if setpathmml was used
+AD.Machine             = 'SIRIUS';   % Will already be defined if setpathmml was used
+AD.SubMachine          = 'Booster';  % Will already be defined if setpathmml was used
+AD.MachineType         = 'Booster';  % Will already be defined if setpathmml was used
+AD.Version             = getappdata(0, 'SIRIUSMachineVersion');
 AD.OperationalMode     = '3 GeV';
 AD.Energy              = 3.0;
 AD.InjectionEnergy     = 0.150;
 AD.ModeName            = 'HighE';
 AD.OpsFileExtension    = '';
-
-sirius_bo_lattice(AD.Energy);
-
-
-AD.Circumference       = findspos(THERING,length(THERING)+1);
 AD.HarmonicNumber      = 828;
 AD.DeltaRFDisp         = 2000e-6;
 %AD.DeltaRFChro         = [-4000 -2000 -1000 0 1000 2000 4000] * 1e-6;
 %AD.DeltaRFChro         = [-2000 -1000 0 1000 2000] * 1e-6;
 AD.DeltaRFChro         = 1e-6 * linspace(-3000,3000,11);
-
 AD.TuneDelay           = 0.0;  
 AD.ATModel             = 'sirius_bo_lattice';
 AD.Chromaticity.Golden = [1; 1];
-AD.MCF                 = getmcf('Model');
-
 AD.BeamCurrent         = 0.002; % [A]
 AD.NrBunches           = AD.HarmonicNumber;
 AD.Coupling            = 0.0002;
 AD.OpsData.PrsProfFile = 'sirius_bo_pressure_profile.txt';
 AD.AveragePressure     = 1.5e-8; % [mbar]
+AD.SetMultipolesErrors = false;  % 2015-09-21 Luana
 
-% 2015-09-21 Luana
-AD.SetMultipolesErrors = false;
-
+sirius_bo_lattice(AD.Energy, AD.Version);
+AD.Circumference       = findspos(THERING,length(THERING)+1);
+AD.MCF                 = getmcf('Model');
 setad(AD);
+
 switch2sim;
 switch2hw; 
 
@@ -162,37 +157,33 @@ function set_operationalmode_Low
 global THERING;
 
 AD = getad;
-AD.Machine             = 'SIRIUS';     % Will already be defined if setpathmml was used
-AD.SubMachine          = 'BO.V04.01';  % Will already be defined if setpathmml was used
-AD.MachineType         = 'Booster';    % Will already be defined if setpathmml was used
+AD.Machine             = 'SIRIUS';   % Will already be defined if setpathmml was used
+AD.SubMachine          = 'Booster';  % Will already be defined if setpathmml was used
+AD.MachineType         = 'Booster';  % Will already be defined if setpathmml was used
+AD.Version             = getappdata(0, 'SIRIUSMachineVersion');
 AD.OperationalMode     = '150 MeV';
 AD.Energy              = 0.150;
 AD.InjectionEnergy     = 0.150;
 AD.ModeName            = 'LowE';
 AD.OpsFileExtension    = '';
-
-sirius_bo_lattice(AD.Energy);
-
-AD.Circumference       = findspos(THERING,length(THERING)+1);
 AD.HarmonicNumber      = 828;
 AD.DeltaRFDisp         = 2000e-6;
 AD.DeltaRFChro         = 1e-6 * linspace(-3000,3000,11);
-
 AD.TuneDelay           = 0.0;  
 AD.ATModel             = 'sirius_bo_lattice';
 AD.Chromaticity.Golden = [1; 1];
-AD.MCF                 = getmcf('Model');
-
 AD.BeamCurrent         = 0.002; % [A]
 AD.NrBunches           = AD.HarmonicNumber;
 AD.Coupling            = 0.0002;
 AD.OpsData.PrsProfFile = 'sirius_bo_pressure_profile.txt';
 AD.AveragePressure     = 1.5e-8; % [mbar]
+AD.SetMultipolesErrors = false;  % 2015-09-21 Luana
 
-% 2015-09-21 Luana
-AD.SetMultipolesErrors = false;
-
+sirius_bo_lattice(AD.Energy, AD.Version);
+AD.Circumference       = findspos(THERING,length(THERING)+1);
+AD.MCF                 = getmcf('Model');
 setad(AD);
+
 switch2sim;
 switch2hw; 
 
