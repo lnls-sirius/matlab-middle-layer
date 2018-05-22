@@ -1,36 +1,25 @@
-function [MachineName, SubMachineName, LinkFlag, MMLROOT] = setpathsirius(varargin)
-%SETPATHLNLS - Initializes the Matlab Middle Layer (MML) for Brazilian Sources (LNLS1 or SIRIUS)
-%  [MachineName, SubMachineName, OnlineLinkMethod, MMLROOT] = setpathlnls(OnlineLinkMethod)
+function [MachineName, SubMachineName, LinkFlag, MMLROOT] = setpathsirius(SubMachine, LinkFlag)
+%SETPATHSIRIUS - Initializes the Matlab Middle Layer (MML) for Brazilian Source SIRIUS
+%  [MachineName, SubMachineName, OnlineLinkMethod, MMLROOT] = setpathsirius(OnlineLinkMethod)
 %
 %  INPUTS
-%  1. Machine - 'LNLS1' {Default}
-%  1. OnlineLinkMethod - 'lnls1Link' {Default}
+%  1. Machine - 'SIRIUS' {Default}
+%  1. OnlineLinkMethod - 'None' {Default}
 
 %  Written by Greg Portmann
 %             Ximenes.
 
-% Input parsing
-if nargin>0
-    Machine = varargin{1};
-end;
-if nargin>1, 
-    SubMachine = varargin{2}; 
-end;
-if nargin>2, 
-    LinkFlag = varargin{3}; 
-end;
-
-if ~isempty(strfind(SubMachine, 'SI.'))
+if ~isempty(strfind(SubMachine, 'StorageRing'))
     MachineType = 'StorageRing';
-elseif ~isempty(strfind(SubMachine, 'BO.'))
+elseif ~isempty(strfind(SubMachine, 'Booster'))
     MachineType = 'Booster';
-elseif ~isempty(strfind(SubMachine, 'TB.'))
+elseif ~isempty(strfind(SubMachine, 'TB'))
     MachineType = 'TransportLine';
-elseif ~isempty(strfind(SubMachine, 'TS.'))
+elseif ~isempty(strfind(SubMachine, 'TS'))
     MachineType = 'TransportLine';
-elseif ~isempty(strfind(SubMachine, 'LI.'))
-    MachineType = 'TransportLine';
+elseif ~isempty(strfind(SubMachine, 'LI'))
+    MachineType = 'Linac';
 end
 
-[MachineName, SubMachineName, LinkFlag, MMLROOT] = setpathmml(Machine, SubMachine, MachineType, LinkFlag);
+[MachineName, SubMachineName, LinkFlag, MMLROOT] = setpathmml('SIRIUS', SubMachine, MachineType, LinkFlag);
 
