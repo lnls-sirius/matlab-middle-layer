@@ -12,7 +12,7 @@
 # If you don't want to install into $(TOP) then
 # define INSTALL_LOCATION_APP here
 
-INSTALL_LOCATION_APP=/home/fac_files/lnls-fac/MatlabMiddleLayer/Release/links/labca/
+INSTALL_LOCATION_APP=/home/fac_files/lnls-sirius/matlab-middle-layer/links/labca
 
 ##########################################
 ## Tell us where EPICS base is installed
